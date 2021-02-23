@@ -1,10 +1,12 @@
-while True:
-    a=list(input().split())
-    res=dict()
+a=list(map(int,input().split()))
 
-    for i in range(len(a)):
-        x=res[a[i]]
-        res[a[i]]=x+1
+mp={}
 
-for key in res:
-    print(key,res[key])
+for i in range(len(a)):
+    if a[i] not in mp:
+        mp[a[i]]=1
+    else:
+        mp[a[i]]+=1
+
+for key in mp:
+    print(mp[key])
