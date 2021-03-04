@@ -1,20 +1,12 @@
+#Re.start() & Re.end()
 import re
 s=input()
 k=input()
-res=""
-a={}
-for i in range(len(s)):
-    print(i)
-    res+=s[i]
-    print(res,"---------")
-    x=re.search(r"k",res)
-    if x:
-        start_index=x.start()
-        end_index=x.end()
-        res=""
-        res+=s[i]
-        a[start_index]=end_index
+res=re.compile(k)
+x=res.search(s)
 
-for key,value in a.items():
-    print(key,value)
-    
+if not x:
+    print("(-1, -1)")
+while x:
+    print("({0}, {1})".format(x.start(),x.end()-1))
+    x=res.search(s,x.start()+1)
