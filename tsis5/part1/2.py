@@ -1,3 +1,4 @@
+# Write a Python program to read first n lines of a file
 from itertools import islice
 
 def fread(fnames,n):

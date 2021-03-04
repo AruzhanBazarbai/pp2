@@ -1,3 +1,4 @@
+# Write a Python program to append text to a file and display the text
 def f_write(fname):
     with open(fname,"w") as f:
         f.write("11111111\n")
