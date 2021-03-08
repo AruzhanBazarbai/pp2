@@ -1,26 +1,12 @@
+#done
+import re
 
-n=int(input())
-items=dict()
+def f(s):
+    x=re.match("^[a-z]+@[a-z]+\.[a-z]+$",s)
+    if x:
+        print("Yes")
+    else:
+        print("No")
 
-for i in range(n):
-    a=list(input().split())
-    x=a[0]
-    y=int(a[1])
-    for j in range(2,len(a)):
-        items[a[j]]=x
-
-m=int(input())
-list1=[]
-for i in range(m):
-    s=input()
-    k=True
-    for key in items.keys():
-        if key==s:
-            print(items[key])
-            #list1.append(items[key])
-            k=False
-    if k:
-        print("Unknown")
-        #list1.append("Unknown")
-
-#print(list1)
+s=input()
+f(s)

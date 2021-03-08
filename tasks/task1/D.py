@@ -1,31 +1,18 @@
-
-c=dict()
-f=open("input.txt","r",encoding="utf-8")
-text=f.read().split()
-
-
-for word in text:
-    if word not in c:
-        c[word]=1
-    else:
-        c[word]+=1
+#done
+a=[]
+def f(l,r):
+    if l>r:
+        return l
+    a.append(l)
+    return f(l+2,r)
 
 
-c=sorted((key,value) for key,value in c.items())
-c=dict(c)
-
-for key,value in c.items():
-    if value%2==0:
-        print(key)
 
 
-'''
-from collections import Counter
+l,r=map(int,input().split())
+if l%2==0:
+    l+=1
 
-def read(fname):
-    with open(fname) as f:
-        return Counter(f.read().split())
-
-print(read("input.txt"))
-'''
+f(l,r)
+print(*a)
 

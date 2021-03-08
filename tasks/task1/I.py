@@ -1,18 +1,11 @@
+#done
 
-n=int(input())
-a=list(map(int,input().split()))
-s1=""
-for x in a:
-    s1+=str(x)
+l,r=map(int,input().split())
+a=[]
 
-a.sort()
-s2=""
+for i in range(l,r+1):
+    if i%7==1 or i%7==5 or i%7==2:
+        a.append(i)
+        
 
-for x in a:
-    s2+=str(x)
-
-
-if s1==s2:
-    print("Interesting")
-else:
-    print("Not interesting")
+print(*a)

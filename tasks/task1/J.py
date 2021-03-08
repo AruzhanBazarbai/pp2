@@ -1,11 +1,33 @@
+#done
+s=str(input())
+d={}
 
-n=int(input())
-a=list(map(int,input().split()))
-if n==1:
-    print(f"Clean:1")
-    print("Dirty:0")
+for x in s:
+    if x not in d:
+        d[x]=1
+    else:
+        d[x]+=1
+k=True
 
+if len(s)%2==0:
+    for value in d.values():
+        if value%2!=0:
+            k=False
+            break
+
+    
 else:
-    print("Clean:0")
-    print(f"Dirty:{n}")
+    z=True
+    for value in d.values():
+        if value%2!=0 and k and z:
+            z=False
+        elif value%2!=0 and k and z==False:
+            k=False
+            break
+        
+if k:
+    print("ZA WARUDO TOKI WO TOMARE")
+else:
+    print("JOJO")
+
 

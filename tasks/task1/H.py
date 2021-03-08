@@ -1,14 +1,11 @@
+#done
 
-n,k=map(int,input().split())
-z=False
+s=input()
+x=""
+for i in s:
+    x=i+x
 
-for i in range(n):
-    a,b,c=map(int,input().split())
-    d=a+b+c
-    if d/3>=k:
-        z=True
-        break
-if z:
+if x==s:
     print("YES")
 else:
     print("NO")
