@@ -46,6 +46,9 @@ while not done:
     text = pygame.transform.rotate(text, 45)
     screen.blit(text, (0, 0))
 
+    #polygon
+    pygame.draw.polygon(screen, RED, [[100, 100], [200, 100], [100, 200], [200, 200], [150, 150]])
+    
 
     pygame.display.flip()
 
