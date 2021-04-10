@@ -6,6 +6,7 @@ pygame.init()
 screen=pygame.display.set_mode((500,500))
 sound=pygame.mixer.Sound('path_to_wavfile')
 sound.play()
+#sound.stop() чтобы остановить
 done=False
 
 while not done:
