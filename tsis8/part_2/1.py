@@ -2,17 +2,17 @@ import pygame
 import random
 import time
 
-#initializing
+#INITIALIZING
 pygame.init()
 
-#colors
+#COLORS
 BLACK=(0,0,0)
 WHITE=(255,255,255)
 BLUE=(0,0,255)
 RED=(255,0,0)
 GREEN=(0,255,0)
 
-#screen
+#SCREEN
 WIDTH=400
 HEIGHT=600
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -36,7 +36,6 @@ sound_back.play(-1)
 
 #BACKGROUND AND TEXTS
 background=pygame.image.load("Background.png")
-# SCORE_E=0
 font=pygame.font.SysFont(None,WIDTH//6)
 font_small=pygame.font.SysFont(None,30)
 game_over=font.render("GAME OVER!",True,BLACK)
@@ -60,9 +59,6 @@ class Enemy(pygame.sprite.Sprite):
             speed_e=random.randint(1,5)
             self.rect.top=0
             self.rect.center=(random.randint(25,WIDTH-25),0)
-
-    # def draw(self,surface):
-    #     surface.blit(self.image,self.rect)
 
 #CLASS FOR PLAYER
 class Player(pygame.sprite.Sprite):
@@ -89,12 +85,9 @@ class Player(pygame.sprite.Sprite):
         p_top=self.rect.top
         p_bottom=self.rect.bottom
 
-    # def draw(self,surface):
-    #     surface.blit(self.image,self.rect)
 
-
-#CLASS FOR MONEYS
-class Money(pygame.sprite.Sprite):
+#CLASS FOR COINS
+class coin(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image=pygame.image.load("Money.png")
@@ -131,7 +124,7 @@ class Money(pygame.sprite.Sprite):
     
 P1=Player()
 E1=Enemy()
-M1=Money()
+M1=coin()
 
 #SPRITE GROUPS
 enemies=pygame.sprite.Group()
@@ -165,12 +158,12 @@ while not done:
     screen.blit(scores_m,(WIDTH-37,10))
 
 
-    #moves and redraws all sprites
+    #MOVES AND REDRAWS ALL SPRITES
     for x in all_sprites:
         screen.blit(x.image,x.rect)
         x.move()
 
-    #to be run if collision occur between Player and Enemy
+    #TO BE RUN IF COLLISION OCCUR BETWEEN PLAYER AND ENEMY
     if pygame.sprite.spritecollideany(P1,enemies):
         k=False
         sound_back.stop()
@@ -191,6 +184,7 @@ while not done:
 
     pygame.display.flip()
     clock.tick(FPS)
+
 if k:
     sound_back.stop()
 pygame.quit()
