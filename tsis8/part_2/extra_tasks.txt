@@ -1,8 +1,8 @@
 Extra tasks to the given tutorial:
 1)Adding randomly appearing coins on the road
-      -(Добавление случайно появляющихся монет на дороге)
+      -(Добавление случайно появляющихся монет на дороге)+
 2)Showing the number of collected coins in the top right corner
-       -(Отображение количества собранных монет в правом верхнем углу)
+       -(Отображение количества собранных монет в правом верхнем углу)+
 3)Change speed functionality from the tutorial with next logic:
 Each Enemy will have constant randomly generated speed in range [1, 5]
         -(Измените функциональность скорости из учебника с помощью следующей логики:
