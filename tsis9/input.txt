@@ -14,4 +14,4 @@ To the existing paint app that you did on the lecture, make the following functi
 2. Draw circle - (Нарисуйте круг) +
 3. Eraser - (Ластик) +
 4. Color selection - (Выбор цвета) +
-5. Saving painted picture to file - (Сохранение нарисованной картинки в файл)
+5. Saving painted picture to file - (Сохранение нарисованной картинки в файл) +

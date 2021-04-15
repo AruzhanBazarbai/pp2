@@ -3,10 +3,14 @@ import math
 
 """
 INSTRUCTION:
-eraser- right button of mouse
-to draw rectangle-K_q
-to draw circle-K_a
-buttons to choose color you can see on function FUNC_COLOR()
+1)eraser: right button of mouse
+2)to draw rectangle: K_q
+3)to draw circle: K_a
+4)buttons to choose color: you can see on function FUNC_COLOR()
+5)quit and save:
+        1.pygame.QUIT
+        2.K_w + CTRL
+        3.K_F4 + ALT
 NOTE:
 if you clicked on K_a and then on K_q you can only draw a rectangle. 
 Because the last click blocks all other clicks
@@ -105,7 +109,6 @@ def circle_positions(x1,y1,x2,y2):
 
 
 
-
 def main():
     pygame.init()
     WIDTH=800
@@ -113,14 +116,11 @@ def main():
     SCREEN_COLOR=(0,0,0)
     screen=pygame.display.set_mode((WIDTH,HEIGHT))  
     screen.fill(SCREEN_COLOR)
-    draw_on=False
-    draw_rect=False
-    draw_circle=False
+    draw_on, draw_rect, draw_circle=False, False, False
     mode='random'
     a,b=0,0
     radius=10
     
-
     colors={
         'red' : (255,0,0),
         'blue' : (0,0,255),
@@ -132,7 +132,6 @@ def main():
         'purple' : (87, 32, 123),
         'grey' : (121, 136, 143),
         'brown' : (164, 109, 40)
-
     }
 
     while True:
@@ -143,11 +142,14 @@ def main():
         for event in pygame.event.get():
             #TO EXIT THE GAME
             if event.type==pygame.QUIT:
+                pygame.image.save(screen,'paint.jpg')
                 return 
             if event.type==pygame.KEYDOWN:
                 if event.key==pygame.K_w and ctrl_held:
+                    pygame.image.save(screen,'paint.jpg')
                     return
                 elif event.key==pygame.K_F4 and alt_held:
+                    pygame.image.save(screen,'paint.jpg')
                     return
                 #CHANGING THE SIZE OF PEN
                 elif event.key==pygame.K_UP:
@@ -171,17 +173,14 @@ def main():
                 if event.button==1:
                     if mode=='random':
                         color=(random.randrange(256),random.randrange(256),random.randrange(256))
-                        # print(color)
                     else:
                         color=colors[mode]
-
 
                     if not draw_rect and not draw_circle:
                         draw_on=True
                         pygame.draw.circle(screen,color,event.pos,radius) #pos0-coordinate of x; pos1-coordinate of y
                     else:
                         pos=event.pos
-
 
                 elif event.button==3:
                     color=SCREEN_COLOR
