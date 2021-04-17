@@ -116,6 +116,7 @@ def main():
     SCREEN_COLOR=(0,0,0)
     screen=pygame.display.set_mode((WIDTH,HEIGHT))  
     screen.fill(SCREEN_COLOR)
+    pygame.display.set_caption("Paint")
     draw_on, draw_rect, draw_circle=False, False, False
     mode='random'
     a,b=0,0

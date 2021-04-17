@@ -1,5 +1,6 @@
 import pygame
 import random
+import pickle
 
 pygame.init()
 
@@ -53,7 +54,7 @@ class Snake:
     def eat(self,foodx,foody):
         x=self.elements[0][0]
         y=self.elements[0][1]
-        if foodx<=x<=foodx+10 and foody<=y<=foody+10:
+        if foodx<=x<=foodx+15 and foody<=y<=foody+15:
             return True
         return False
     
@@ -70,14 +71,16 @@ class Food:
         self.y=random.randint(0,HEIGHT)
 
     def draw(self):
-        pygame.draw.rect(screen,GREEN,(self.x,self.y,10,10))
+        pygame.draw.rect(screen,GREEN,(self.x,self.y,15,15))
 
 
 
 done=False
+player_1,player_2=False, False
 S1=Snake(100,100)
 F1=Food()
 S2=Snake(150,100)
+# Snakes=
 
 #SPEED AND FPS
 d=5
@@ -105,21 +108,19 @@ while not done:
             elif event.key==pygame.K_UP and S1.dy!=d:
                 S1.dx=0
                 S1.dy= -d
-
-            elif event.key==pygame.K_d and S2.dx!=-d:
-                S2.dx=d
-                S2.dy=0
-            elif event.key==pygame.K_a and S2.dx!=d:
-                S2.dx = -d
-                S2.dy = 0
-            elif event.key==pygame.K_s and S2.dy!=-d:
-                S2.dx=0
-                S2.dy=d
-            elif event.key==pygame.K_w and S2.dy!=d:
-                S2.dx=0
-                S2.dy= -d
-            # elif event.key==pygame.K_1:
-            #     S1.is_add=True
+            if player_2:
+                if event.key==pygame.K_d and S2.dx!=-d:
+                    S2.dx=d
+                    S2.dy=0
+                elif event.key==pygame.K_a and S2.dx!=d:
+                    S2.dx = -d
+                    S2.dy = 0
+                elif event.key==pygame.K_s and S2.dy!=-d:
+                    S2.dx=0
+                    S2.dy=d
+                elif event.key==pygame.K_w and S2.dy!=d:
+                    S2.dx=0
+                    S2.dy= -d
     if S1.eat(F1.x,F1.y):
         S1.is_add=True
         F1.get()
