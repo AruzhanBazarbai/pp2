@@ -4,9 +4,9 @@ To the existing game that you did on the lecture, make the following functionali
 1. Add food - (Добавьте еду) +
 2. Add walls - (Добавьте стены)
 3. Add levels (speed and walls) - ( Добавьте уровни (скорость и стены))
-4. Add save game state to file - (Добавьте сохранение состояния игры в файл)
+4. Add save game state to file - (Добавьте сохранение состояния игры в файл) +
 5. Two snake in one game (with different control buttons)
- - ( Две змеи в одной игре (с разными кнопками управления))
+ - ( Две змеи в одной игре (с разными кнопками управления)) +
 
 2) Paint
 To the existing paint app that you did on the lecture, make the following functionality:
