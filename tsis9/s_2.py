@@ -6,7 +6,6 @@ import sys
 
 pygame.init()
 FILE_NAME='snakes.data'
-FILE_LEVEL='snakes.level'
 SCORE_G=0
 SCORE=5
 
@@ -45,6 +44,8 @@ class Snake:
         self.size+=1
         self.elements.append([0,0])
         self.is_add= False
+        # if self.size%3==0:
+        #     self.speed+=10
 
     def  change(self,pressed_keys):
         if (pressed_keys[pygame.K_UP] or pressed_keys[pygame.K_w]) and self.dy!=self.d:
@@ -112,7 +113,7 @@ class Snake:
     def eat(self,foodx,foody):
         x=self.elements[0][0]
         y=self.elements[0][1]
-        if foodx<=x<=foodx+20 and foody<=y<=foody+20:
+        if foodx<=x<=foodx+15 and foody<=y<=foody+15:
             return True
         return False
 
@@ -137,15 +138,15 @@ class Food:
         if score==0:
             self.x=random.randint(25,WIDTH-40)
             self.y=random.randint(25,HEIGHT-40)
-        elif score==SCORE:
+        elif score==5:
             self.choose=random.randint(1,2)
             if self.choose==1:
                 self.x=random.randint(25,WIDTH-40)
-                self.y=random.randint(25,HEIGHT//2-70)
+                self.y=random.randint(25,HEIGHT//2-30)
             else:
                 self.x=random.randint(25,WIDTH-40)
                 self.y=random.randint(HEIGHT//2-25,HEIGHT-40)
-        elif score==SCORE*2:
+        elif score==10:
             self.choose=random.randint(1,3)
             if self.choose==1:
                 self.x=random.randint(WIDTH//2+5,WIDTH-15)
@@ -156,7 +157,7 @@ class Food:
             else:
                 self.x=random.randint(25,WIDTH//2-40)
                 self.y=random.randint(25,HEIGHT-40)
-        # print(self.x,self.y)
+
 
     def draw(self):
         pygame.draw.rect(screen,GREEN,(self.x,self.y,15,15))
@@ -258,7 +259,7 @@ def game_loop(done):
     #SCORES
     global SCORE
     global SCORE_G
-    level=0
+    # level=0
     score_1=0
     score_2=0
     
@@ -272,10 +273,8 @@ def game_loop(done):
         try:
             with open(FILE_NAME, 'br') as f:
                 snakes = pickle.load(f)
-            with open(FILE_LEVEL,'r') as f:
-                level=int(f.read())
         except Exception as e:
-            print(e)
+            # print(e)
             if c:
                 snakes=(S1,)
             else:
@@ -285,15 +284,15 @@ def game_loop(done):
     else:
         snakes=(S1,S2)
 
-    if level==1:
-        l_1,l_2,l_3=True,False,False
-        SCORE_G=0
-    elif level==2:
-        SCORE_G=SCORE
-        l_1,l_2,l_3=False,True,False
-    elif level==3:
-        SCORE_G=SCORE*2
-        l_1,l_2,l_3=False,False,True
+    # if level==1:
+    #     l_1,l_2,l_3=True,False,False
+    #     SCORE_G=0
+    # elif level==2:
+    #     SCORE_G=SCORE
+    #     l_1,l_2,l_3=False,True,False
+    # elif level==3:
+    #     SCORE_G=SCORE*2
+    #     l_1,l_2,l_3=False,False,True
         
     #GAME LOOP
     while not done:
@@ -306,8 +305,6 @@ def game_loop(done):
                 if event.key==pygame.K_SPACE:
                     with open(FILE_NAME, 'bw') as f:
                         pickle.dump(snakes, f)
-                    with open(FILE_LEVEL,'w') as f:
-                        f.write(str(level))
                     done=True
             
         pressed_keys=pygame.key.get_pressed()
@@ -315,6 +312,7 @@ def game_loop(done):
         for snake in snakes:
             snake.draw()
             snake.move(SCORE_G)
+        # print(SCORE_G)
 
         if snakes.__sizeof__()==32:
             if snakes[0].eat(F1.x,F1.y):
@@ -337,6 +335,7 @@ def game_loop(done):
                 l_3=True
             elif SCORE_G==(SCORE*3) and l_3:
                 l_3=False
+            # print('--------------',SCORE_G)
 
 
         elif snakes.__sizeof__()==40:
@@ -374,13 +373,13 @@ def game_loop(done):
                 l_3=False
         
         if l_1:
-            level=1
+            # level=1
             level_1()
         elif l_2:
-            level=2
+            # level=2
             level_2()
         elif l_3:
-            level=3
+            # level=3
             level_3()
         else:
             screen.fill(GREEN)
