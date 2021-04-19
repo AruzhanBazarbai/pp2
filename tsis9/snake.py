@@ -46,6 +46,7 @@ class Snake:
         self.elements.append([0,0])
         self.is_add= False
 
+    #CONDITIONS FOR BUTTONS
     def  change(self,pressed_keys):
         if (pressed_keys[pygame.K_UP] or pressed_keys[pygame.K_w]) and self.dy!=self.d:
             self.dx=0
@@ -71,6 +72,7 @@ class Snake:
         self.elements[0][0]+=self.dx #изменяем координату головы по х
         self.elements[0][1]+=self.dy #изменяем координату головы по у
 
+        #CONDITIONS FOR COLLISION SNAKE WITH WALLS
         if score==0:
             if self.elements[0][0]>=(WIDTH-25) or self.elements[0][0]<=25:
                 message()
@@ -116,6 +118,7 @@ class Snake:
             return True
         return False
 
+#FINISH GAME IF SNAKE HITT THE WALLS
 def message():
     font=pygame.font.SysFont(None,100)
     text=font.render("GAME OVER!!!",True,BLACK) 
@@ -220,7 +223,7 @@ def level_2():
     rect_2=(20,0,WIDTH-20,20)
     rect_3=(WIDTH-20,20,20,HEIGHT-20)
     rect_4=(20,HEIGHT-20,WIDTH-40,20)
-    rect_5=(WIDTH//2-50,HEIGHT//2-50,WIDTH-20,20)
+    rect_5=(WIDTH//2-50,HEIGHT//2-60,WIDTH-20,20)
     pygame.draw.rect(screen,BLUE,rect_1)
     pygame.draw.rect(screen,BLUE,rect_2)
     pygame.draw.rect(screen,BLUE,rect_3)
@@ -273,7 +276,18 @@ def game_loop(done):
             with open(FILE_NAME, 'br') as f:
                 snakes = pickle.load(f)
             with open(FILE_LEVEL,'r') as f:
-                level=int(f.read())
+                text=f.read()
+                res=''
+                t=[]
+                for x in text:
+                    if x==' ':
+                        t.append(int(res))
+                        res=''
+                    else:
+                        res+=x
+                # print(t)
+                level,score_1,score_2,S1.speed=t          
+
         except Exception as e:
             print(e)
             if c:
@@ -308,6 +322,13 @@ def game_loop(done):
                         pickle.dump(snakes, f)
                     with open(FILE_LEVEL,'w') as f:
                         f.write(str(level))
+                        f.write(' ')
+                        f.write(str(score_1))
+                        f.write(' ')
+                        f.write(str(score_2))
+                        f.write(' ')
+                        f.write(str(snakes[0].speed))
+                        f.write(' ')
                     done=True
             
         pressed_keys=pygame.key.get_pressed()
