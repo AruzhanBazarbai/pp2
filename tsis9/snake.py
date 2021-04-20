@@ -34,7 +34,7 @@ class Snake:
         self.dx=5 #right
         self.dy=0
         self.is_add=False
-        self.speed=15
+        self.speed=25
         self.d=5
 
     def draw(self):
@@ -79,7 +79,7 @@ class Snake:
             elif self.elements[0][1]>=(HEIGHT-25) or self.elements[0][1]<=25:
                 message()
         elif score==SCORE:
-            self.speed=25
+            self.speed=35
             if self.elements[0][0]>=(WIDTH-25) or self.elements[0][0]<=25:
                 message()
             elif self.elements[0][1]>=(HEIGHT-25) or self.elements[0][1]<=25:
@@ -87,7 +87,7 @@ class Snake:
             elif self.elements[0][0]>=(WIDTH//2-50) and self.elements[0][0]<=WIDTH and self.elements[0][1]>=(HEIGHT//2-50) and self.elements[0][1]<=(HEIGHT//2-30):
                 message()
         elif score==SCORE*2:
-            self.speed=35
+            self.speed=45
             if self.elements[0][0]>=0 and self.elements[0][0]<=(WIDTH//2+5) and self.elements[0][1]>=0 and self.elements[0][1]<=25:
                 message()
             elif self.elements[0][0]>=(WIDTH//2-25) and self.elements[0][0]<=(WIDTH//2+5) and self.elements[0][1]>=0 and self.elements[0][1]<=(HEIGHT//3+55):
@@ -120,7 +120,7 @@ class Snake:
 
 #FINISH GAME IF SNAKE HITT THE WALLS
 def message():
-    font=pygame.font.SysFont(None,100)
+    font=pygame.font.SysFont(None,WIDTH//8)
     text=font.render("GAME OVER!!!",True,BLACK) 
     screen.fill(GREEN)
     screen.blit(text,(WIDTH//4,HEIGHT//4))  
@@ -173,8 +173,10 @@ def menu():
     #TEXTS
     font_1=pygame.font.SysFont(None,WIDTH//23)
     text_start_1=font_1.render("Press space to load saved game, or other button to start a new one", True,BLACK)
-    font_2=pygame.font.SysFont(None,50)
-    font_3=pygame.font.SysFont(None,50)
+    font_1_2=pygame.font.SysFont(None,WIDTH//23)
+    text_start_1_2=font_1_2.render("Also press space to save and quit the game",True,BLACK)
+    font_2=pygame.font.SysFont(None,WIDTH//16)
+    font_3=pygame.font.SysFont(None,WIDTH//16)
     text_start_2=font_2.render("Press 1 to one player's game",True,BLACK)
     text_start_3=font_3.render("Press 2 to two player's game",True,BLACK)
 
@@ -198,7 +200,8 @@ def menu():
 
         screen.fill(GREEN)
         if menu_1:
-            screen.blit(text_start_1,(20,HEIGHT//2))
+            screen.blit(text_start_1,(20,HEIGHT//2-100))
+            screen.blit(text_start_1_2,(80,HEIGHT//2))
         elif menu_2:
             screen.blit(text_start_2,(WIDTH//5,HEIGHT//3))
             screen.blit(text_start_3,(WIDTH//5,HEIGHT//3+100))
