@@ -1,5 +1,9 @@
 PostgreSQL
 https://www.postgresqltutorial.com/postgresql-python/
+
+TO INSTALL:
+1)pip uninstall psycopg2 psycopg2-binary
+2)pip install psycopg2
  
 Your task in TSIS 10 is to finish following section from PostgreSQL tutorial:
 
